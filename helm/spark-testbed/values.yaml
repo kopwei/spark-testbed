@@ -1,3 +1,9 @@
 master:
   image: kopkop/spark-test-master
   tag: latest
+worker:
+  image: kopkop/spark-test-worker
+  tag: latest
+jupyterlab:
+  image: kopkop/spark-test-jupyterlab
+  tag: latest

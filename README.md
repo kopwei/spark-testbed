@@ -17,4 +17,12 @@ Here is the list of components in the system.
 
 The project consists of Docker image files and Helm chart to deploy.
 
+### Build Docker images
+
+Developer can use following command to build docker images:
+
+```bash
+bash build.sh
+```
+
 ## Deployment

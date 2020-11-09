@@ -1,5 +1,5 @@
 
-FROM spark-base
+FROM kopkop/spark-test-spark-base
 
 # -- Runtime
 

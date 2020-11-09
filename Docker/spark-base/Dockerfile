@@ -1,4 +1,4 @@
-FROM cluster-base
+FROM kopkop/spark-test-cluster-base
 
 # -- Layer: Apache Spark
 

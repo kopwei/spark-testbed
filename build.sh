@@ -10,24 +10,24 @@ JUPYTERLAB_VERSION="2.1.5"
 
 docker build \
   -f Docker/cluster-base/Dockerfile \
-  -t cluster-base .
+  -t kopkop/spark-test-cluster-base .
 
 docker build \
   --build-arg spark_version="${SPARK_VERSION}" \
   --build-arg hadoop_version="${HADOOP_VERSION}" \
   -f Docker/spark-base/Dockerfile \
-  -t spark-base .
+  -t kopkop/spark-test-spark-base .
 
 docker build \
   -f Docker/spark-master/Dockerfile \
-  -t spark-master .
+  -t kopkop/spark-test-master .
 
 docker build \
   -f Docker/spark-worker/Dockerfile \
-  -t spark-worker .
+  -t kopkop/spark-test-worker .
 
 docker build \
   --build-arg spark_version="${SPARK_VERSION}" \
   --build-arg jupyterlab_version="${JUPYTERLAB_VERSION}" \
   -f Docker/jupyterlab/Dockerfile \
-  -t jupyterlab .
+  -t kopkop/spark-test-jupyterlab .

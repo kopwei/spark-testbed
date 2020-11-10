@@ -1,16 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "master.fullname" . }}
+  name: {{ include "worker.fullname" . }}
   labels:
-    {{- include "master.labels" . | nindent 4 }}
+    {{- include "worker.labels" . | nindent 4 }}
 spec:
-  replicas: 1
-{{- end }}
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "master.selectorLabels" . | nindent 6 }}
-    app.kubernetes.io/module: spark-master
+      {{- include "worker.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/module: spark-worker
   template:
     metadata:
     {{- with .Values.podAnnotations }}
@@ -18,36 +17,32 @@ spec:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       labels:
-        {{- include "master.selectorLabels" . | nindent 8 }}
-        app.kubernetes.io/module: spark-master
+        {{- include "worker.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/module: spark-worker
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "master.serviceAccountName" . }}
+      serviceAccountName: {{ include "worker.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: {{ .Chart.Name }}-spark-master
+        - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - name: ui
-              containerPort: 8080
-              protocol: TCP
-            - name: spark
-              containerPort: 7077
+            - name: worker
+              containerPort: 8081
               protocol: TCP
           livenessProbe:
-            httpGet:
-              path: /
-              port: ui
+            tcpSocket:
+              port: worker
           readinessProbe:
             tcpSocket:
-              port: spark
+              port: worker
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

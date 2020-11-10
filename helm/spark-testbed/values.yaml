@@ -1,9 +1,25 @@
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: false
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+
 master:
-  image: kopkop/spark-test-master
-  tag: latest
+  image:
+    repository: kopkop/spark-test-master
+    tag: latest
 worker:
-  image: kopkop/spark-test-worker
-  tag: latest
+  image:
+    repository: kopkop/spark-test-worker
+    tag: latest
 jupyterlab:
-  image: kopkop/spark-test-jupyterlab
-  tag: latest
+  image:
+    repository: kopkop/spark-test-jupyterlab
+    tag: latest

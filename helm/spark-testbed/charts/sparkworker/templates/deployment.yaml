@@ -37,6 +37,11 @@ spec:
             - name: worker
               containerPort: 8081
               protocol: TCP
+          env:
+            - name: SPARK_WORKER_CORES
+              value: "1"
+            - name: SPARK_WORKER_MEMORY
+              value: "512m"
           livenessProbe:
             tcpSocket:
               port: worker

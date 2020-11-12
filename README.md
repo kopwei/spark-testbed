@@ -11,7 +11,7 @@ Here is the list of components in the system.
 
 - Spark Master
 - Spark Worker
-- JupyterLb
+- JupyterLab
 
 ## Development
 

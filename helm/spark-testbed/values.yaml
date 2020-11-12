@@ -10,16 +10,24 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
+persistence:
+  storageClass: "-"
 
 master:
   image:
     repository: kopkop/spark-test-master
     tag: latest
+  persistence:
+    existingClaim: "shared-workspace"
 worker:
   image:
     repository: kopkop/spark-test-worker
     tag: latest
+  persistence:
+    existingClaim: "shared-workspace"
 jupyterlab:
   image:
     repository: kopkop/spark-test-jupyterlab
     tag: latest
+  persistence:
+    existingClaim: "shared-workspace"

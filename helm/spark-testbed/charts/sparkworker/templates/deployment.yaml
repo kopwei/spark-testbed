@@ -48,6 +48,9 @@ spec:
           readinessProbe:
             tcpSocket:
               port: worker
+          volumeMounts:
+          - name: shared-workspace
+            mountPath: /opt/workspace
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
@@ -62,3 +65,11 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      volumes:
+      - name: shared-workspace
+        {{- if .Values.persistence.existingClaim }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.persistence.existingClaim }}
+        {{- else }}
+        emptyDir: {}
+        {{- end -}}

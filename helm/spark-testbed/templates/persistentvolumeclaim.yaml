@@ -1,10 +1,11 @@
+{{- if not .Values.existingPersistentVolumeClaim }}
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: {{ template "jupyterlab.fullname" . }}
+  name: {{ template "spark-testbed.fullname" . }}
   labels:
-    app: {{ template "jupyterlab.name" . }}
-    chart: {{ template "jupyterlab.chart" . }}
+    app: {{ template "spark-testbed.name" . }}
+    chart: {{ template "spark-testbed.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
@@ -18,5 +19,6 @@ spec:
   storageClassName: ""
 {{- else }}
   storageClassName: "{{ .Values.persistence.storageClass }}"
+{{- end }}
 {{- end }}
 {{- end }}

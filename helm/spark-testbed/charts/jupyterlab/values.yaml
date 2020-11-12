@@ -44,7 +44,7 @@ persistence:
   accessMode: readWriteMany
   storageClass: "-"
   size: 10Gi
-
+  existingClaim: ""
 
 ingress:
   enabled: false

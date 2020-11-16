@@ -1,8 +1,7 @@
-{{- if not .Values.existingPersistentVolumeClaim }}
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: {{ template "spark-testbed.fullname" . }}
+  name: shared-workspace
   labels:
     app: {{ template "spark-testbed.name" . }}
     chart: {{ template "spark-testbed.chart" . }}
@@ -19,6 +18,5 @@ spec:
   storageClassName: ""
 {{- else }}
   storageClassName: "{{ .Values.persistence.storageClass }}"
-{{- end }}
 {{- end }}
 {{- end }}

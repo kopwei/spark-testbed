@@ -12,6 +12,7 @@ serviceAccount:
 
 persistence:
   storageClass: "-"
+  accessMode: ReadWriteMany
 
 master:
   image:

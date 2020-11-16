@@ -13,6 +13,7 @@ serviceAccount:
 persistence:
   storageClass: "-"
   accessMode: ReadWriteMany
+  size: "10Gi"
 
 master:
   image:

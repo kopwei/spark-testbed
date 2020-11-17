@@ -9,7 +9,7 @@ spec:
   selector:
     matchLabels:
       {{- include "master.selectorLabels" . | nindent 6 }}
-    app.kubernetes.io/module: spark-master
+      app.kubernetes.io/module: spark-master
   template:
     metadata:
     {{- with .Values.podAnnotations }}

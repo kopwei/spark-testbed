@@ -2,7 +2,7 @@ FROM kopkop/spark-test-cluster-base
 
 # -- Layer: Apache Spark
 
-ARG spark_version=3.0.0
+ARG spark_version=3.0.1
 ARG hadoop_version=2.7
 
 RUN apt-get update -y && \

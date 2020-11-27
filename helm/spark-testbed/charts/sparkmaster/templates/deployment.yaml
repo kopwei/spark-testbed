@@ -40,6 +40,12 @@ spec:
             - name: spark
               containerPort: 7077
               protocol: TCP
+          env:
+            - name: SPARK_MASTER_HOST
+              valueFrom:
+                fieldRef:
+                  #fieldPath: metadata.name
+                  fieldPath: status.podIP
           livenessProbe:
             httpGet:
               path: /

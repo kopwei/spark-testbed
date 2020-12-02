@@ -1,0 +1,9 @@
+dependencies:
+- name: jupyterlab
+  repository: ""
+  version: 0.1.0
+- name: spark
+  repository: https://charts.bitnami.com/bitnami
+  version: 4.1.0
+digest: sha256:f12e4adde7ecd6ce3b9312fa3106ae5b646ffc8e633ca18119ca2b66cb622697
+generated: "2020-12-02T09:41:44.732302282Z"

@@ -11,25 +11,18 @@ serviceAccount:
   name: ""
 
 persistence:
-  storageClass: "-"
+  storageClass: "nfs-client"
   accessMode: ReadWriteMany
   size: "10Gi"
 
-master:
-  image:
-    repository: kopkop/spark-test-master
-    tag: latest
-  persistence:
-    existingClaim: "shared-workspace"
-worker:
-  image:
-    repository: kopkop/spark-test-worker
-    tag: latest
-  persistence:
-    existingClaim: "shared-workspace"
 jupyterlab:
   image:
     repository: kopkop/spark-test-jupyterlab
     tag: latest
   persistence:
     existingClaim: "shared-workspace"
+
+spark:
+  image:
+    repository: "kopkop/bitnami-spark-arm64"
+    tag: "3.0.1-debian-10"

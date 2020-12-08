@@ -26,8 +26,10 @@ docker build \
   -f Docker/spark-worker/Dockerfile \
   -t kopkop/spark-test-worker .
 
+pushd Docker/jupyterlab >> /dev/null
 docker build \
   --build-arg spark_version="${SPARK_VERSION}" \
   --build-arg jupyterlab_version="${JUPYTERLAB_VERSION}" \
-  -f Docker/jupyterlab/Dockerfile \
+  -f Dockerfile \
   -t kopkop/spark-test-jupyterlab .
+popd >> /dev/null

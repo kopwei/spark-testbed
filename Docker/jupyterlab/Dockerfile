@@ -16,4 +16,4 @@ ADD start-jupyterlab.sh /root/
 
 EXPOSE 8888
 WORKDIR ${SHARED_WORKSPACE}
-ENTRYPOINT [ "bash", "/root/start-jupterlab.sh" ]
+ENTRYPOINT [ "bash", "/root/start-jupyterlab.sh" ]

@@ -31,6 +31,12 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            name: JUPYTER_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ include "jupyterlab.fullname" . }}
+                key: jupyterPassword
           ports:
             - name: http
               containerPort: 8888
